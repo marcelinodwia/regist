@@ -132,10 +132,12 @@
       registrants.push(registrant);
       updateRegistrantsTable();
       updateResume();
-      message.innerHTML = "Data berhasil disimpan";
-      name.value = "";
-      age.value = "";
-      money.value = "";
+      setTimeout(() => {
+        message.innerHTML = "Data berhasil disimpan";
+        name.value = "";
+        age.value = "";
+        money.value = "";
+      }, 2000);
     });
     function updateRegistrantsTable() {
       const rows = registrants.map((registrant) => {
@@ -156,9 +158,12 @@
         return total + parseInt(registrant.age);
       }, 0);
       const avgMoney = Math.round(totalMoney / registrants.length);
-      const avgAge = Math.round(totalAge / registrants.length);
       averageMoney.innerHTML = avgMoney;
-      averageAge.innerHTML = avgAge;
+
+      const avgAge = totalAge / registrants.length;
+      const avgAgeWithOneDecimal = avgAge.toFixed(1);
+      const avgAge1 = avgAgeWithOneDecimal.replace(/\.0$/, "");
+      averageAge.innerHTML = avgAge1;
     }
 
     function openTab(event, tabName) {
